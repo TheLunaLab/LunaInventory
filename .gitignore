@@ -1,0 +1,17 @@
+# Ignore Laravel environment file
+api/.env
+
+# Ignore Laravel logs
+api/storage/logs/
+
+# Ignore Laravel cache
+api/bootstrap/cache/
+
+# Ignore VS Code settings
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
