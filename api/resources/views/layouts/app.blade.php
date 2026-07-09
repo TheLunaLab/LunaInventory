@@ -5,311 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'LunaInventory')</title>
 
-    <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-
-        body{
-            font-family:Segoe UI,Arial,sans-serif;
-            background:#f3f6fb;
-            display:flex;
-            min-height:100vh;
-            color:#1f2937;
-        }
-
-        .sidebar{
-            width:260px;
-            background:#111827;
-            color:white;
-            display:flex;
-            flex-direction:column;
-        }
-
-        .logo{
-            padding:24px;
-            font-size:28px;
-            font-weight:700;
-            border-bottom:1px solid #374151;
-        }
-
-        .logo span{
-            color:#3b82f6;
-        }
-
-        .menu{
-            padding-top:18px;
-        }
-
-        .menu a{
-            display:block;
-            color:#d1d5db;
-            text-decoration:none;
-            padding:16px 24px;
-            border-left:4px solid transparent;
-            transition:.2s;
-            font-weight:500;
-        }
-
-        .menu a:hover{
-            background:#1f2937;
-            border-left-color:#2563eb;
-            color:white;
-        }
-
-        .main{
-            flex:1;
-            display:flex;
-            flex-direction:column;
-        }
-
-        .topbar{
-            background:white;
-            height:70px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:0 35px;
-            border-bottom:1px solid #e5e7eb;
-        }
-
-        .topbar h2{
-            font-size:22px;
-            font-weight:600;
-        }
-
-        .content{
-            padding:35px;
-        }
-
-        .card{
-            background:white;
-            border-radius:14px;
-            padding:35px;
-            box-shadow:0 4px 20px rgba(0,0,0,.06);
-        }
-
-        /* ---------- Dashboard ---------- */
-
-        .stats{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-            gap:24px;
-            margin-top:30px;
-            margin-bottom:50px;
-        }
-
-        .stat-card{
-            background:white;
-            border:1px solid #e5e7eb;
-            border-radius:14px;
-            padding:28px;
-            transition:.25s;
-            box-shadow:0 4px 15px rgba(0,0,0,.05);
-        }
-
-        .stat-card:hover{
-            transform:translateY(-4px);
-            box-shadow:0 12px 28px rgba(0,0,0,.10);
-        }
-
-        .stat-header{
-            font-size:15px;
-            color:#6b7280;
-            font-weight:600;
-            margin-bottom:18px;
-        }
-
-        .stat-number{
-            font-size:46px;
-            font-weight:700;
-            color:#111827;
-            line-height:1;
-        }
-
-        .stat-description{
-            margin-top:12px;
-            color:#9ca3af;
-            font-size:14px;
-        }
-
-        /* ---------- Quick Actions ---------- */
-
-        .quick-actions{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-            gap:20px;
-        }
-
-        .action-card{
-            display:block;
-            text-decoration:none;
-            background:white;
-            border:1px solid #e5e7eb;
-            border-radius:14px;
-            padding:24px;
-            transition:.25s;
-            box-shadow:0 4px 15px rgba(0,0,0,.05);
-        }
-
-        .action-card:hover{
-            transform:translateY(-4px);
-            border-color:#2563eb;
-            box-shadow:0 12px 28px rgba(37,99,235,.15);
-        }
-
-        .action-title{
-            font-size:18px;
-            font-weight:600;
-            color:#111827;
-            margin-bottom:10px;
-        }
-
-        .action-text{
-            color:#6b7280;
-            font-size:14px;
-            line-height:1.5;
-        }
-
-        .disabled{
-            opacity:.65;
-            cursor:default;
-        }
-
-        /* ---------- Tables ---------- */
-
-        table{
-            width:100%;
-            border-collapse:collapse;
-            margin-top:25px;
-        }
-
-        th{
-            background:#2563eb;
-            color:white;
-            padding:14px;
-            text-align:left;
-        }
-
-        td{
-            padding:14px;
-            border-bottom:1px solid #e5e7eb;
-        }
-
-        tr:nth-child(even){
-            background:#f9fafb;
-        }
-
-        tr:hover{
-            background:#eef4ff;
-        }
-
-        /* ---------- Forms ---------- */
-
-        input,
-        textarea,
-        select{
-            width:100%;
-            padding:12px;
-            border:1px solid #d1d5db;
-            border-radius:8px;
-            margin-top:5px;
-            margin-bottom:18px;
-        }
-
-        button,
-        .btn{
-            display:inline-block;
-            background:#2563eb;
-            color:white;
-            text-decoration:none;
-            border:none;
-            border-radius:8px;
-            padding:12px 22px;
-            font-weight:600;
-            cursor:pointer;
-        }
-
-        button:hover,
-        .btn:hover{
-            background:#1d4ed8;
-        }
-
-        .success{
-            background:#dcfce7;
-            color:#166534;
-            border:1px solid #86efac;
-            border-radius:8px;
-            padding:16px;
-            margin-bottom:25px;
-        }
-
-        .footer{
-            margin-top:auto;
-            text-align:center;
-            padding:25px;
-            color:#6b7280;
-            font-size:14px;
-        }
-
-    </style>
-
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="min-h-screen bg-slate-100 text-slate-900">
 
-<div class="sidebar">
+<div class="flex min-h-screen">
 
-    <div class="logo">
-        <span>Luna</span>Inventory
-    </div>
+    <aside class="w-72 bg-slate-950 text-white hidden md:flex flex-col">
 
-    <div class="menu">
-
-        <a href="/">Dashboard</a>
-
-        <a href="/computers">Computers</a>
-
-        <a href="/computers/create">Add Computer</a>
-
-        <a href="#">Employees</a>
-
-        <a href="#">Licenses</a>
-
-    </div>
-
-</div>
-
-<div class="main">
-
-    <div class="topbar">
-
-        <h2>@yield('page-title','Dashboard')</h2>
-
-        <div>
-            Jorge Luna
+        <div class="p-6 border-b border-slate-800">
+            <div class="flex items-center gap-3">
+                <div class="h-11 w-11 rounded-2xl bg-blue-600 flex items-center justify-center font-bold text-xl">
+                    L
+                </div>
+                <div>
+                    <div class="text-xl font-bold tracking-tight">
+                        LunaInventory
+                    </div>
+                    <div class="text-xs text-slate-400">
+                        Infrastructure Manager
+                    </div>
+                </div>
+            </div>
         </div>
 
-    </div>
+        <nav class="flex-1 p-4 space-y-2">
 
-    <div class="content">
+            <a href="/" class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold bg-blue-600 text-white shadow-lg shadow-blue-900/30">
+                <span>🏠</span>
+                Dashboard
+            </a>
 
-        <div class="card">
+            <a href="/computers" class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-300 hover:bg-slate-800 hover:text-white transition">
+                <span>💻</span>
+                Computers
+            </a>
 
+            <a href="/computers/create" class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-300 hover:bg-slate-800 hover:text-white transition">
+                <span>➕</span>
+                Add Computer
+            </a>
+
+            <a href="#" class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-500 cursor-not-allowed">
+                <span>👥</span>
+                Employees
+            </a>
+
+            <a href="#" class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-500 cursor-not-allowed">
+                <span>🔑</span>
+                Licenses
+            </a>
+
+            <a href="#" class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-slate-500 cursor-not-allowed">
+                <span>📡</span>
+                Discovery
+            </a>
+
+        </nav>
+
+        <div class="p-4 border-t border-slate-800">
+            <div class="rounded-2xl bg-slate-900 p-4">
+                <div class="text-xs text-slate-400 mb-3">Lab Stack</div>
+
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                        <span class="text-slate-300">Laravel</span>
+                        <span class="text-green-400">Online</span>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <span class="text-slate-300">Docker</span>
+                        <span class="text-green-400">Running</span>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <span class="text-slate-300">MySQL</span>
+                        <span class="text-green-400">Connected</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </aside>
+
+    <main class="flex-1">
+
+        <header class="h-20 bg-white border-b border-slate-200 px-8 flex items-center justify-between">
+
+            <div>
+                <h1 class="text-2xl font-bold tracking-tight">
+                    @yield('page-title', 'Dashboard')
+                </h1>
+                <p class="text-sm text-slate-500">
+                    Manage your lab infrastructure from one place.
+                </p>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="hidden sm:block text-right">
+                    <div class="text-sm font-semibold">Jorge Luna</div>
+                    <div class="text-xs text-slate-500">Administrator</div>
+                </div>
+
+                <div class="h-11 w-11 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold">
+                    JL
+                </div>
+            </div>
+
+        </header>
+
+        <section class="p-8">
             @yield('content')
+        </section>
 
-        </div>
-
-    </div>
-
-    <div class="footer">
-
-        LunaInventory • Laravel • Docker • MySQL
-
-    </div>
+    </main>
 
 </div>
 
